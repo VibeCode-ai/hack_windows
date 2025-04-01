@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Status</title>
+    <link rel="stylesheet" href="css/april-fools-prank.css">
+</head>
+<body>
+    <div class="container">
+        <h1>System Status</h1>
+        <div class="error-box" id="error1">
+            <div class="error-header">
+                <div class="error-icon">⚠️</div>
+                <div class="error-title">Warning: System Check Required</div>
+            </div>
+            <div class="error-message">
+                System security scan detected unusual activity. Running diagnostics...
+            </div>
+        </div>
+        
+        <!-- Add system resource monitor -->
+        <div class="error-box" id="resourceMonitor">
+            <div class="error-header">
+                <div class="error-icon">📊</div>
+                <div class="error-title">System Resources</div>
+            </div>
+            <div class="error-message">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>CPU Usage:</span>
+                    <span id="cpuUsage">12%</span>
+                </div>
+                <div style="height: 10px; background-color: #eee; border-radius: 5px; overflow: hidden; margin-bottom: 10px;">
+                    <div id="cpuBar" style="height: 100%; background-color: #4CAF50; width: 12%;"></div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Memory Usage:</span>
+                    <span id="memUsage">1.8 GB / 8 GB</span>
+                </div>
+                <div style="height: 10px; background-color: #eee; border-radius: 5px; overflow: hidden; margin-bottom: 10px;">
+                    <div id="memBar" style="height: 100%; background-color: #2196F3; width: 23%;"></div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Disk Activity:</span>
+                    <span id="diskUsage">3.2 MB/s</span>
+                </div>
+                <div style="height: 10px; background-color: #eee; border-radius: 5px; overflow: hidden;">
+                    <div id="diskBar" style="height: 100%; background-color: #FF9800; width: 15%;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+        
+        <div id="scanStatus">Initializing scan...</div>
+        
+        <div class="error-box hidden" id="error2">
+            <div class="error-header">
+                <div class="error-icon">⚠️</div>
+                <div class="error-title">Alert: Security Compromise Detected</div>
+            </div>
+            <div class="error-message">
+                Multiple unauthorized access attempts detected. Tracing origin...
+            </div>
+        </div>
+        
+        <div class="error-box hidden" id="error3">
+            <div class="error-header">
+                <div class="error-icon">🔴</div>
+                <div class="error-title">Critical Error: Data Breach In Progress</div>
+            </div>
+            <div class="error-message">
+                Personal data extraction detected. Initiating countermeasures...
+            </div>
+        </div>
+        
+        <div class="error-box hidden" id="error4">
+            <div class="error-header">
+                <div class="error-icon">⛔</div>
+                <div class="error-title">EMERGENCY: System Failure Imminent</div>
+            </div>
+            <div class="error-message">
+                Critical system failure detected. Attempting recovery...
+            </div>
+        </div>
+    </div>
+    
+    <div class="bsod" id="bsod">
+        <div style="font-size: 28px; margin-bottom: 20px;">:(</div>
+        <div style="font-size: 24px; margin-bottom: 20px;">Your PC ran into a problem</div>
+        <div style="font-size: 16px; margin-bottom: 40px; max-width: 80%;">
+            A problem has been detected and Windows has been shut down to prevent damage to your computer.
+        </div>
+        <div style="font-size: 14px; margin-bottom: 10px;" id="errorCode">Error code: 0xBF3A74E1</div>
+        <div style="font-size: 14px;" id="collecting">Collecting information...</div>
+        <div style="margin-top: 30px; font-size: 14px; display: none;" id="restart">Restarting in <span id="countdown">5</span> seconds...</div>
+    </div>
+
+    <div class="prank-message" id="prankMessage">
+        APRIL FOOLS! 🎉
+        <p style="font-size: 20px;">Your computer is absolutely fine!</p>
+        <p style="font-size: 16px;">No files were harmed in the making of this prank.</p>
+    </div>
+    
+    <!-- Overlay container for screen cracks -->
+    <div id="overlay"></div>
+    
+    <!-- Audio elements -->
+    <audio id="errorSound" src="sounds/error.mp3" preload="auto"></audio>
+    <audio id="alarmSound" src="sounds/alarm.mp3" preload="auto"></audio>
+    <audio id="glassBreak" src="sounds/glass-break.mp3" preload="auto"></audio>
+    <audio id="keyboardSound" src="sounds/keyboard.mp3" preload="auto" loop></audio>
+    
+    <!-- Add script to update resource monitor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateResourceMonitor() {
+                const cpuUsage = document.getElementById('cpuUsage');
+                const cpuBar = document.getElementById('cpuBar');
+                const memUsage = document.getElementById('memUsage');
+                const memBar = document.getElementById('memBar');
+                const diskUsage = document.getElementById('diskUsage');
+                const diskBar = document.getElementById('diskBar');
+                
+                // Start with normal values
+                let cpu = 12;
+                let mem = 23;
+                let disk = 15;
+                
+                setInterval(() => {
+                    // Gradually increase values as the prank progresses
+                    const progressBar = document.getElementById('progressBar');
+                    const progress = parseFloat(progressBar.style.width) || 0;
+                    
+                    if (progress > 30) {
+                        cpu = Math.min(100, cpu + Math.random() * 5);
+                        mem = Math.min(100, mem + Math.random() * 3);
+                        disk = Math.min(100, disk + Math.random() * 4);
+                    }
+                    
+                    if (progress > 60) {
+                        cpu = Math.min(100, cpu + Math.random() * 10);
+                        mem = Math.min(100, mem + Math.random() * 8);
+                        disk = Math.min(100, disk + Math.random() * 15);
+                    }
+                    
+                    cpuUsage.textContent = Math.floor(cpu) + '%';
+                    cpuBar.style.width = cpu + '%';
+                    
+                    if (cpu > 80) cpuBar.style.backgroundColor = '#F44336';
+                    else if (cpu > 60) cpuBar.style.backgroundColor = '#FF9800';
+                    
+                    const memGB = (mem * 8 / 100).toFixed(1);
+                    memUsage.textContent = memGB + ' GB / 8 GB';
+                    memBar.style.width = mem + '%';
+                    
+                    if (mem > 80) memBar.style.backgroundColor = '#F44336';
+                    else if (mem > 60) memBar.style.backgroundColor = '#FF9800';
+                    
+                    const diskMB = Math.floor(disk * 20 / 10);
+                    diskUsage.textContent = diskMB + ' MB/s';
+                    diskBar.style.width = disk + '%';
+                    
+                    if (disk > 80) diskBar.style.backgroundColor = '#F44336';
+                    else if (disk > 60) diskBar.style.backgroundColor = '#FF9800';
+                }, 1000);
+            }
+            
+            updateResourceMonitor();
+        });
+    </script>
+    
+    <!-- Revert to non-module script to fix issues -->
+    <script src="js/april-fools-prank.js"></script>
+</body>
+</html>

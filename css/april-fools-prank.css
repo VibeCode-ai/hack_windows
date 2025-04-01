@@ -1,0 +1,539 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 2s, color 2s;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.error-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    transition: all 1s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.error-box.warning {
+    border-color: #ff9800;
+    background-color: #fff8e1;
+    box-shadow: 0 2px 5px rgba(255,152,0,0.2);
+}
+
+.error-box.danger {
+    border-color: #f44336;
+    background-color: #ffebee;
+    box-shadow: 0 2px 5px rgba(244,67,54,0.2);
+}
+
+.error-box.critical {
+    border-color: #d50000;
+    background-color: #ffcdd2;
+    box-shadow: 0 2px 10px rgba(213,0,0,0.4);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 2px 10px rgba(213,0,0,0.4); }
+    50% { box-shadow: 0 2px 15px rgba(213,0,0,0.7); }
+    100% { box-shadow: 0 2px 10px rgba(213,0,0,0.4); }
+}
+
+.error-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.error-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.error-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.error-message {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: #eee;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0%;
+    transition: width 1s;
+}
+
+.bsod {
+    background-color: #0078d7;
+    color: white;
+    padding: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+.typing {
+    border-right: 2px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 auto;
+    letter-spacing: 2px;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
+}
+
+.flash {
+    animation: flash 0.5s;
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+.prank-message {
+    text-align: center;
+    font-size: 48px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #ff4081;
+    display: none;
+    animation: color-change 2s infinite;
+}
+
+@keyframes color-change {
+    0% { color: #ff4081; }
+    25% { color: #3f51b5; }
+    50% { color: #4caf50; }
+    75% { color: #ff9800; }
+    100% { color: #ff4081; }
+}
+
+/* Screen flicker effect for advanced stages */
+.screen-flicker {
+    animation: flicker 0.3s infinite alternate;
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    90% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+/* Cursor changes to simulate system issues */
+.cursor-wait {
+    cursor: wait !important;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed !important;
+}
+
+.cursor-none {
+    cursor: none !important;
+}
+
+/* Glitch text effect */
+.glitch-text {
+    position: relative;
+    animation: glitch-skew 1s infinite linear alternate-reverse;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(27px, 9999px, 15px, 0); }
+    20% { clip: rect(13px, 9999px, 98px, 0); }
+    40% { clip: rect(82px, 9999px, 43px, 0); }
+    60% { clip: rect(35px, 9999px, 73px, 0); }
+    80% { clip: rect(92px, 9999px, 11px, 0); }
+    100% { clip: rect(49px, 9999px, 27px, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(12px, 9999px, 32px, 0); }
+    20% { clip: rect(54px, 9999px, 12px, 0); }
+    40% { clip: rect(45px, 9999px, 46px, 0); }
+    60% { clip: rect(24px, 9999px, 79px, 0); }
+    80% { clip: rect(86px, 9999px, 32px, 0); }
+    100% { clip: rect(23px, 9999px, 37px, 0); }
+}
+
+@keyframes glitch-skew {
+    0% { transform: skew(-1deg); }
+    20% { transform: skew(0deg); }
+    40% { transform: skew(1deg); }
+    60% { transform: skew(0deg); }
+    80% { transform: skew(0.5deg); }
+    100% { transform: skew(-0.5deg); }
+}
+
+/* Terminal styling improvements */
+.terminal {
+    background-color: #0c0c0c;
+    color: #0f0;
+    font-family: 'Consolas', monospace;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: none;
+    height: 200px;
+    overflow: auto;
+    border: 1px solid #1a1a1a;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Fake virus scanner */
+.virus-list {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 15px;
+    font-family: monospace;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.virus-item {
+    padding: 3px 5px;
+    margin: 2px 0;
+}
+
+.virus-item.dangerous {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #d50000;
+    font-weight: bold;
+}
+
+/* Shake animation for critical errors */
+.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.windows-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.windows-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.webcam-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+    z-index: 999;
+    max-width: 300px;
+}
+
+.data-leak {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    display: none;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    height: 150px;
+    overflow: auto;
+}
+
+.file-deletion {
+    margin-top: 20px;
+    display: none;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+}
+
+.file-icon {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.deleting {
+    color: red;
+    text-decoration: line-through;
+}
+
+.glitch {
+    animation: glitch-effect 0.5s infinite;
+}
+
+@keyframes glitch-effect {
+    0% { transform: translate(0) }
+    20% { transform: translate(-5px, 5px) }
+    40% { transform: translate(-5px, -5px) }
+    60% { transform: translate(5px, 5px) }
+    80% { transform: translate(5px, -5px) }
+    100% { transform: translate(0) }
+}
+
+.ransom {
+    background-color: #300;
+    color: #f00;
+    text-align: center;
+    padding: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    font-family: 'Courier New', monospace;
+}
+
+.ransom h1 {
+    color: #f00;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.ip-tracker {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+    z-index: 999;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    pointer-events: none;
+    z-index: 2000;
+}
+
+.crack {
+    position: absolute;
+    background: white;
+    transform: rotate(45deg);
+}
+
+/* Add styles for clipboard data display */
+.clipboard-content {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 3px;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    max-height: 100px;
+    overflow-y: auto;
+    display: none;
+}
+
+/* Add styles for cookie/storage data display */
+.storage-data {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 3px;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+}
+
+.storage-item {
+    padding: 3px;
+    border-bottom: 1px solid #eee;
+}
+
+.fullscreen-warning {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,0.9);
+    color: #ff0000;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 2001;
+    display: none;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+
+.start-button {
+    background-color: #0078d7;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 300px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.start-button:hover {
+    background-color: #0063b1;
+    transform: scale(1.05);
+}
+
+.start-button:active {
+    transform: scale(0.98);
+}
+
+.vulnerability-list {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0.1);
+    border-radius: 5px;
+    border-left: 4px solid #ff0000;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .error-box {
+        padding: 15px;
+    }
+    
+    .windows-header h1, h1 {
+        font-size: 1.5rem;
+    }
+    
+    .error-title {
+        font-size: 16px;
+    }
+    
+    .ransom h1 {
+        font-size: 24px;
+    }
+    
+    .prank-message {
+        font-size: 36px;
+    }
+}
